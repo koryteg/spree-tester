@@ -3,7 +3,7 @@ require "bundler/capistrano"
 server "ec2-54-218-231-87.us-west-2.compute.amazonaws.com", :web, :app, :db, primary: true
 set :application, "spree-tester"
 set :user, "bitnami"
-set :deploy_to, "/opt/#{user}/apps/#{application}"
+set :deploy_to, "/opt/#{user}/projects/#{application}"
 set :deploy_via, :remote_cache
 set :use_sudo, false
 
@@ -13,6 +13,7 @@ set :branch, "master"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
+ssh_options[:keys] = [File.join(ENV["HOME"], ".ec2", "meetearl")]
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 

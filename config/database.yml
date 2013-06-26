@@ -27,7 +27,11 @@ test:
   socket: /tmp/mysql.sock
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: mysql2
+  database: spree_tester_production
+  encoding: utf8
+  username: kory
+  password: admin
   pool: 5
   timeout: 5000
+  socket: /opt/bitnami/mysql/tmp/mysql.sock
